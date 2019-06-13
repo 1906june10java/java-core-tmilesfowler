@@ -2,6 +2,7 @@ package com.revature.eval.java.core;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 public class EvaluationService {
 
@@ -15,7 +16,24 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		
+		phrase = phrase.replace("-", " ");
+		String [] splPhr = phrase.split(" ");
+		
+		char firLet;
+		int phrIdx = 0;
+		String nym = "";
+		
+		for (String word : splPhr) {
+			
+			firLet = splPhr[phrIdx].charAt(0);
+			firLet = Character.toUpperCase(firLet);
+			phrIdx++;
+			nym = nym + firLet;
+			
+		}
+		
+		return nym; 
 	}
 
 	/**
@@ -35,7 +53,54 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		string = string.toLowerCase();
+		int wordScore = 0;
+		
+		String [] scoreString = string.split("");
+		
+		String worth1 = "a e i o u l n r s t";
+		String worth2 = "d g";
+		String worth3 = "b c m p";
+		String worth4 = "f h v w y";
+		String worth5 = "k";
+		String worth8 = "j x";
+		String worth10 = "q z";
+		
+		String [] pt1 = worth1.split(" ");
+		String [] pt2 = worth2.split(" ");
+		String [] pt3 = worth3.split(" ");
+		String [] pt4 = worth4.split(" ");
+		String [] pt5 = worth5.split(" ");
+		String [] pt8 = worth8.split(" ");
+		String [] pt10 = worth10.split(" ");
+		
+		for (String letter : scoreString) {
+			
+			if (letter.equals(pt1 [0]) || letter.equals(pt1 [1]) || letter.equals(pt1 [2]) || letter.equals(pt1 [3]) || letter.equals(pt1 [4])
+					|| letter.equals(pt1 [5]) || letter.equals(pt1 [6]) || letter.equals(pt1 [7]) || letter.equals(pt1 [8]) || letter.equals(pt1 [9])) {
+				wordScore += 1;
+			}
+			else if (letter.equals(pt2 [0]) || letter.equals(pt2 [1])) {
+				wordScore += 2;
+			}
+			else if (letter.equals(pt3 [0]) || letter.equals(pt3 [1]) || letter.equals(pt3 [2]) || letter.equals(pt3 [3])) {
+				wordScore += 3;
+			}
+			else if (letter.equals(pt4 [0]) || letter.equals(pt4 [1]) || letter.equals(pt4 [2]) || letter.equals(pt4 [3]) || letter.equals(pt4 [4])) {
+				wordScore += 4;
+			}
+			else if (letter.equals(pt5 [0])) {
+				wordScore += 5;
+			}
+			else if (letter.equals(pt8 [0]) || letter.equals(pt8 [1])) {
+				wordScore += 8;
+			}
+			else {
+				wordScore += 10;
+			}
+		}
+		
+		return wordScore;
 	}
 
 	/**
@@ -71,7 +136,48 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		//string = "(804) 690-5236";
+		
+		string = string.replace("(", "");
+		string = string.replace(")", "");
+		string = string.replace(" ", "");
+		string = string.replace("+", "");
+		string = string.replace("-", "");
+		string = string.replace(".", "");
+		
+		String [] strTst = string.split("");
+		if (strTst.length > 10) {
+			try {
+			throw new IllegalArgumentException("Too Many Digits");
+			}
+			catch (IllegalArgumentException digits){
+				//System.out.println("Too Many Digits");
+				throw digits;
+			}
+		}
+		
+		for (String symbol : strTst) {
+			
+			if (symbol.equals("1") || symbol.equals("1") || symbol.equals("2") || symbol.equals("3") || symbol.equals("4") ||
+					symbol.equals("5") || symbol.equals("6") || symbol.equals("7") || symbol.equals("8") || symbol.equals("9")) {
+			}
+			
+			else {
+				try {
+					throw new IllegalArgumentException("Invalid Symbol");
+				}
+				catch (IllegalArgumentException symbols){
+					
+					throw symbols;
+					
+				}
+			}
+			
+		}
+		
+		System.out.println(string);
+		
+		return string;
 	}
 
 	/**
