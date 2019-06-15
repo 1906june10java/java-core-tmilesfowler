@@ -136,8 +136,6 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string) {
 		// TODO Write an implementation for this method declaration
-		//string = "(804) 690-5236";
-		
 		string = string.replace("(", "");
 		string = string.replace(")", "");
 		string = string.replace(" ", "");
@@ -146,38 +144,40 @@ public class EvaluationService {
 		string = string.replace(".", "");
 		
 		String [] strTst = string.split("");
+		
 		if (strTst.length > 10) {
-			try {
-			throw new IllegalArgumentException("Too Many Digits");
-			}
-			catch (IllegalArgumentException digits){
-				//System.out.println("Too Many Digits");
-				throw digits;
-			}
+				throw new IllegalArgumentException("Too Many Digits");
 		}
 		
-		for (String symbol : strTst) {
+		else {
 			
-			if (symbol.equals("1") || symbol.equals("1") || symbol.equals("2") || symbol.equals("3") || symbol.equals("4") ||
-					symbol.equals("5") || symbol.equals("6") || symbol.equals("7") || symbol.equals("8") || symbol.equals("9")) {
+			int strIdx = 0;
+			
+		for (int i = 0; i < 11; i++) {
+			
+			if (strTst[strIdx].equals("0") || strTst[strIdx].equals("1") || strTst[strIdx].equals("2") || strTst[strIdx].equals("3") || strTst[strIdx].equals("4") ||
+					strTst[strIdx].equals("5") || strTst[strIdx].equals("6") || strTst[strIdx].equals("7") || strTst[strIdx].equals("8") || strTst[strIdx].equals("9")) {
+			
+				strIdx++;
+				
+				if(i == 9) {
+					return string;
+				}
+				
 			}
 			
-			else {
-				try {
-					throw new IllegalArgumentException("Invalid Symbol");
-				}
-				catch (IllegalArgumentException symbols){
-					
-					throw symbols;
-					
-				}
+			else {	
+				i = 11;
+				throw new IllegalArgumentException("Invalid Symbol");		
 			}
+			
 			
 		}
 		
-		System.out.println(string);
+		return "fallthrough";
 		
-		return string;
+		}
+		
 	}
 
 	/**
@@ -191,6 +191,9 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
+		
+		
+		
 		return null;
 	}
 
