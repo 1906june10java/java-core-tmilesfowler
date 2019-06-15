@@ -191,8 +191,53 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
+		string = "one fish two fish red fish blue fish";
+		string = string.replace(",", " ");
+		string = string.replace(" /n", "");
+		String [] wrdComp = string.split(" ");
 		
+		int compDex = 0;
+		int inLoop = 0;
+		int wrdValue = 1;
 		
+		for (String word : wrdComp) {
+			
+			
+			System.out.println(inLoop + "-" + word + " is looping");
+			
+			//if (Current word matches something that has already been through the loop) {
+			// Don't put it through the loop
+			//}
+			//else { Test it
+			for (int i = wrdComp.length - 1; i > -1; i--) {
+				
+				if(inLoop == compDex) {
+					System.out.println("Cancel, " + inLoop + "-" + word + " is " + compDex + "-" + wrdComp[compDex]);
+					compDex++;
+				}
+				
+				else if (word.equals(wrdComp[compDex])){
+					System.out.println("Success! " + inLoop + "-" + word + " matches " + compDex + "-" + wrdComp[compDex]);
+					wrdValue ++;
+					compDex++;
+				}
+				
+				else {
+					System.out.println("Pass, " + inLoop + "-" + word + " isn't " + compDex + "-" + wrdComp[compDex]);
+					compDex++;
+				}
+						
+			}
+			// }
+			
+			System.out.println("DONE! "+ inLoop + "-" + word + " value is " +  wrdValue);
+			inLoop ++;
+			compDex = 0;
+			wrdValue = 1;
+			System.out.println("New looper! " + inLoop);
+			//Add it to the map with its' value
+			//System.out.println(word + " appearances = " + wrdValue);
+		}
 		
 		return null;
 	}
