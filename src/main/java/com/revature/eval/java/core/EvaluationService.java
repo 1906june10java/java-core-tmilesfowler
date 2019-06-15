@@ -3,6 +3,7 @@ package com.revature.eval.java.core;
 import java.util.List;
 import java.util.Map;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class EvaluationService {
 
@@ -191,14 +192,17 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		string = "one fish two fish red fish blue fish";
+		System.out.println("Phase1: " + string);
 		string = string.replace(",", " ");
-		string = string.replace(" /n", "");
+		System.out.println("Phase2: " + string);
+		string = string.replace(" \n", " ");
+		System.out.println("Phase3: " + string);
 		String [] wrdComp = string.split(" ");
 		
 		int compDex = 0;
 		int inLoop = 0;
 		int wrdValue = 1;
+		Map<String, Integer> wordsAndValues = new HashMap<>();
 		
 		for (String word : wrdComp) {
 			
@@ -231,6 +235,7 @@ public class EvaluationService {
 			// }
 			
 			System.out.println("DONE! "+ inLoop + "-" + word + " value is " +  wrdValue);
+			wordsAndValues.put(word, wrdValue); 
 			inLoop ++;
 			compDex = 0;
 			wrdValue = 1;
@@ -239,7 +244,7 @@ public class EvaluationService {
 			//System.out.println(word + " appearances = " + wrdValue);
 		}
 		
-		return null;
+		return wordsAndValues;
 	}
 
 	/**
