@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.math.*;
 
 public class EvaluationService {
 
@@ -287,7 +288,7 @@ public class EvaluationService {
 
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
-			System.out.println("Start, " + sortedList + " is in");
+			//System.out.println("Start, " + sortedList + " is in");
 			Object [] rawArray = sortedList.toArray();
 			int [] useArray = new int [rawArray.length];
 			int useIdx = 0;
@@ -300,24 +301,24 @@ public class EvaluationService {
 			
 			if ((useArray.length & 1) == 0) {
 				useIdx = useArray.length / 2 - 1;
-				System.out.println(useIdx + " is half of " + useArray.length + " in " + sortedList + "-" + t);
+				//System.out.println(useIdx + " is half of " + useArray.length + " in " + sortedList + "-" + t);
 			}
 			
 			else {
 				useIdx = useArray.length / 2;
-				System.out.println(useIdx + " ODD half of " + useArray.length + " in " + sortedList + "-" + t);
+				//System.out.println(useIdx + " ODD half of " + useArray.length + " in " + sortedList + "-" + t);
 			}
 			
-			System.out.println("COMPARE " + t + "V" + useArray[useIdx]);
+			//System.out.println("COMPARE " + t + "V" + useArray[useIdx]);
 			
 			if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
-				System.out.println("Quick Catch! - " + sortedList + "-" + t + " = " + useIdx);
+				//System.out.println("Quick Catch! - " + sortedList + "-" + t + " = " + useIdx);
 				return useIdx;
 			}
 			
 			else if (Integer.valueOf(t.toString()) < useArray[useIdx]) {
 				// First half split
-				System.out.println("Entered Left - " + sortedList + "-" + t);
+				//System.out.println("Entered Left - " + sortedList + "-" + t);
 				if ((useArray.length & 1) == 0) {
 				useIdx = useIdx / 2;
 				mathHolder = useIdx;
@@ -329,17 +330,17 @@ public class EvaluationService {
 				}
 				
 				if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
-					System.out.println("Quick Left! - " + sortedList + "-" + t + " = " + useIdx);
+					//System.out.println("Quick Left! - " + sortedList + "-" + t + " = " + useIdx);
 					return useIdx;
 				}
 				
 				else if (Integer.valueOf(t.toString()) < useArray[useIdx]) {
 					// lower left half
-					System.out.println("Entered Left,Lower - " + sortedList + "-" + t);
+					//System.out.println("Entered Left,Lower - " + sortedList + "-" + t);
 					for (int i = useIdx; i > -1; i--) {
 						
 						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
-							System.out.println("SUCCESS in lower left! " +  sortedList + "-" + t + " = " + useIdx);
+							//System.out.println("SUCCESS in lower left! " +  sortedList + "-" + t + " = " + useIdx);
 							return useIdx;
 						}
 						
@@ -355,14 +356,14 @@ public class EvaluationService {
 				
 				else if (Integer.valueOf(t.toString()) > useArray[useIdx]) {
 					// upper left half
-					System.out.println("Entered Left,Upper - " + sortedList + "-" + t);
+					//System.out.println("Entered Left,Upper - " + sortedList + "-" + t);
 					//System.out.println("COMPARE! - " + Integer.valueOf(t.toString()) + "v" + useArray[useIdx]);
 					mathHolder =  useIdx - 1 * 2;
 					//System.out.println("Loop fields - " + sortedList + "-" + t + " = " + useIdx + "<" + mathHolder);
 					for (int i = useIdx; i < useIdx - 1 * 2; i++) {
 						//System.out.println("Entered Loop - " + sortedList + "-" + t);
 						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
-							System.out.println("SUCCESS upper left! " +  sortedList + "-" + t + " = " + useIdx);
+							//System.out.println("SUCCESS upper left! " +  sortedList + "-" + t + " = " + useIdx);
 							return useIdx;
 						}
 						
@@ -380,7 +381,7 @@ public class EvaluationService {
 			
 			else if (Integer.valueOf(t.toString()) > useArray[useIdx]) {
 				// second half split
-				System.out.println("Entered - Right " + sortedList + "-" + t);
+				//System.out.println("Entered - Right " + sortedList + "-" + t);
 				if ((useArray.length & 1) == 0) {
 				useIdx = useIdx / 2 + useIdx;
 				mathHolder = useIdx;
@@ -397,17 +398,17 @@ public class EvaluationService {
 				//System.out.println("COMPARE! - " + Integer.valueOf(t.toString()) + "v" + useArray[useIdx]);
 				
 				if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
-					System.out.println("Quick Right! - " + sortedList + "-" + t + " = " + useIdx);
+					//System.out.println("Quick Right! - " + sortedList + "-" + t + " = " + useIdx);
 					return useIdx;
 				}
 				
 				else if (Integer.valueOf(t.toString()) < useArray[useIdx]) {
 					// lower right half
-					System.out.println("Entered - Right,Lower " + sortedList + "-" + t);
+					//System.out.println("Entered - Right,Lower " + sortedList + "-" + t);
 					for (int i = useIdx; i > -1; i--) {
 						
 						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
-							System.out.println("SUCCESS in lower right! " +  sortedList + "-" + t + " = " + useIdx);
+							//System.out.println("SUCCESS in lower right! " +  sortedList + "-" + t + " = " + useIdx);
 							return useIdx;
 						}
 						
@@ -423,12 +424,12 @@ public class EvaluationService {
 				
 				else if (Integer.valueOf(t.toString()) > useArray[useIdx]) {
 					// upper right half
-					System.out.println("Entered - Right,Upper " + sortedList + "-" + t);
-					System.out.println("NEW - " + "v" +  useIdx + " " + sortedList + "-" + t);
+					//System.out.println("Entered - Right,Upper " + sortedList + "-" + t);
+					//System.out.println("NEW - " + "v" +  useIdx + " " + sortedList + "-" + t);
 					for (int i = useIdx; i < useIdx * 2 - 1; i++) {
 						
 						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
-							System.out.println("SUCCESS in upper right! " +  sortedList + "-" + t + " = " + useIdx);
+							//System.out.println("SUCCESS in upper right! " +  sortedList + "-" + t + " = " + useIdx);
 							return useIdx;
 						}
 						
@@ -443,12 +444,12 @@ public class EvaluationService {
 				}
 				
 				else {
-					System.out.println("SearchSlip - " + sortedList + "-" + t);
+					//System.out.println("SearchSlip - " + sortedList + "-" + t);
 					return 0;
 				}
 				
 			}
-			System.out.println("Fallthrough - " + sortedList + "-" + t);
+			//System.out.println("Fallthrough - " + sortedList + "-" + t);
 			return 0;
 		}
 
@@ -484,7 +485,30 @@ public class EvaluationService {
 	 */
 	public boolean isArmstrongNumber(int input) {
 		// TODO Write an implementation for this method declaration
+		String strInp = String.valueOf(input);
+		String [] tstArray = strInp.split("");
+		double finalNum = 0;
+		double workNum;
+		
+		for (String num : tstArray) {
+			
+			workNum = Double.valueOf(num);
+			finalNum = Math.pow(workNum, Double.valueOf(tstArray.length)) + finalNum;
+			//System.out.println("First Attempt: " + input + " -> " + num + "-" + finalNum);
+			
+		}
+		
+		//System.out.println("RESULT of " + input + " = " + finalNum);
+		
+		if (finalNum == Double.valueOf(input)) {
+			//System.out.println("TRUE! " + input + " = " + finalNum);
+			return true;
+		}
+		
+		else {
+			//System.out.println("FALSE! " + input + " = " + finalNum);
 		return false;
+		}
 	}
 
 	/**
@@ -499,6 +523,47 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
+		long divTest = l;
+		System.out.println("BEGIN! " + l);
+		divTest = divTest % 2;
+		System.out.println("Clean cut? " + l + "-" + divTest);
+		long firstDiv;
+		long checkDiv = 3;
+		
+		if(divTest != 0) {
+			System.out.println("ENTER - " + l);
+			divTest = l;
+			
+			for (int i = 0; i < 2; i++) {
+				divTest = l % checkDiv;
+				System.out.println("Loop! - " + divTest + "v" + checkDiv + "->" + i);
+				if(divTest != 0) {
+					checkDiv++;
+					divTest = l;
+					i = 0;
+				}
+				else {
+					System.out.println("Exit! - " + divTest + "v" + checkDiv + "->" + i);
+					firstDiv = divTest;
+					i = 2;
+				}
+				
+				
+			}
+			
+			System.out.println("Confirm Exit! - " + divTest + "v" + checkDiv);
+			
+		}
+	
+		//System.out.println(divTest);
+		/**for (Long i = 901255L / 2; i > 0L; i--) {
+			
+			System.out.println("SpeedTest " + i);
+			
+		}
+		**/
+		//System.out.println("DONE");
+		
 		return null;
 	}
 
