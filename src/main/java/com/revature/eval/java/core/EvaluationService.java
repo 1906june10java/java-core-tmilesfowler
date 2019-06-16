@@ -192,11 +192,11 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
-		System.out.println("Phase1: " + string);
+		//System.out.println("Phase1: " + string);
 		string = string.replace(",", " ");
-		System.out.println("Phase2: " + string);
+		//System.out.println("Phase2: " + string);
 		string = string.replace(" \n", " ");
-		System.out.println("Phase3: " + string);
+		//System.out.println("Phase3: " + string);
 		String [] wrdComp = string.split(" ");
 		
 		int compDex = 0;
@@ -207,7 +207,7 @@ public class EvaluationService {
 		for (String word : wrdComp) {
 			
 			
-			System.out.println(inLoop + "-" + word + " is looping");
+			//System.out.println(inLoop + "-" + word + " is looping");
 			
 			//if (Current word matches something that has already been through the loop) {
 			// Don't put it through the loop
@@ -216,30 +216,30 @@ public class EvaluationService {
 			for (int i = wrdComp.length - 1; i > -1; i--) {
 				
 				if(inLoop == compDex) {
-					System.out.println("Cancel, " + inLoop + "-" + word + " is " + compDex + "-" + wrdComp[compDex]);
+					//System.out.println("Cancel, " + inLoop + "-" + word + " is " + compDex + "-" + wrdComp[compDex]);
 					compDex++;
 				}
 				
 				else if (word.equals(wrdComp[compDex])){
-					System.out.println("Success! " + inLoop + "-" + word + " matches " + compDex + "-" + wrdComp[compDex]);
+					//System.out.println("Success! " + inLoop + "-" + word + " matches " + compDex + "-" + wrdComp[compDex]);
 					wrdValue ++;
 					compDex++;
 				}
 				
 				else {
-					System.out.println("Pass, " + inLoop + "-" + word + " isn't " + compDex + "-" + wrdComp[compDex]);
+					//System.out.println("Pass, " + inLoop + "-" + word + " isn't " + compDex + "-" + wrdComp[compDex]);
 					compDex++;
 				}
 						
 			}
 			// }
 			
-			System.out.println("DONE! "+ inLoop + "-" + word + " value is " +  wrdValue);
+			//System.out.println("DONE! "+ inLoop + "-" + word + " value is " +  wrdValue);
 			wordsAndValues.put(word, wrdValue); 
 			inLoop ++;
 			compDex = 0;
 			wrdValue = 1;
-			System.out.println("New looper! " + inLoop);
+			//System.out.println("New looper! " + inLoop);
 			//Add it to the map with its' value
 			//System.out.println(word + " appearances = " + wrdValue);
 		}
@@ -287,6 +287,35 @@ public class EvaluationService {
 
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
+			
+			Object [] rawArray = {1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377}; //sortedList.toArray();
+			int [] useArray = new int [rawArray.length];
+			int useIdx = 0;
+			int mathNum;
+			int startNum;
+			boolean isEven = false;
+			
+			for (Object number : rawArray) {
+				//System.out.println("Begin! " + number + " has entered!"); 
+				useArray[useIdx] = Integer.valueOf(rawArray[useIdx].toString());
+				//System.out.println("Loop! " + useIdx + "-" + useArray[useIdx] + " is the same as " + rawArray[useIdx]);
+				useIdx++;
+			}
+			
+			if ((useArray.length & 1) == 0) {
+				System.out.println(useArray.length + " is even!");
+				mathNum = useArray.length / 2;
+				System.out.println(mathNum);
+				isEven = true;
+				
+			}
+			
+			else {
+				System.out.println(useArray.length + " is odd!");
+			}
+			
+			
+			
 			return 0;
 		}
 
