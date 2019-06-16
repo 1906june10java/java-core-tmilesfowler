@@ -287,38 +287,31 @@ public class EvaluationService {
 
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
-			//System.out.println("Start, " + sortedList + " is in");
+			System.out.println("Start, " + sortedList + " is in");
 			Object [] rawArray = sortedList.toArray();
-			int [] useArray = new int [rawArray.length + 1];
-			//System.out.println("TEST" + useArray.length + "v" + rawArray.length);
+			int [] useArray = new int [rawArray.length];
 			int useIdx = 0;
-			int mathHolder;
-			//boolean isEven = false;
+			int mathHolder = 0;
 			
 			for (Object number : rawArray) {
-				//System.out.println("Begin! " + number + " has entered!"); 
 				useArray[useIdx] = Integer.valueOf(rawArray[useIdx].toString());
-				//System.out.println("Loop! " + useIdx + "-" + useArray[useIdx] + " is the same as " + rawArray[useIdx]);
 				useIdx++;
 			}
 			
 			if ((useArray.length & 1) == 0) {
-				//System.out.println(useArray.length + " is even!");
-				useIdx = useArray.length / 2;
-				//System.out.println(useIdx);
-				//isEven = true;
-				
-				
+				useIdx = useArray.length / 2 - 1;
+				System.out.println(useIdx + " is half of " + useArray.length + " in " + sortedList + "-" + t);
 			}
 			
 			else {
-				//System.out.println(useArray.length + " is odd!");
-				useIdx = useArray.length / 2 + 1;
-				//System.out.println(useIdx + " odd");
+				useIdx = useArray.length / 2;
+				System.out.println(useIdx + " ODD half of " + useArray.length + " in " + sortedList + "-" + t);
 			}
 			
+			System.out.println("COMPARE " + t + "V" + useArray[useIdx]);
+			
 			if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
-				System.out.println("Quick Catch! - " + sortedList + "-" + t);
+				System.out.println("Quick Catch! - " + sortedList + "-" + t + " = " + useIdx);
 				return useIdx;
 			}
 			
@@ -343,7 +336,6 @@ public class EvaluationService {
 				else if (Integer.valueOf(t.toString()) < useArray[useIdx]) {
 					// lower left half
 					System.out.println("Entered Left,Lower - " + sortedList + "-" + t);
-					System.out.println("" + sortedList + "-" + t);
 					for (int i = useIdx; i > -1; i--) {
 						
 						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
@@ -364,11 +356,11 @@ public class EvaluationService {
 				else if (Integer.valueOf(t.toString()) > useArray[useIdx]) {
 					// upper left half
 					System.out.println("Entered Left,Upper - " + sortedList + "-" + t);
-					System.out.println("COMPARE! - " + Integer.valueOf(t.toString()) + "v" + useArray[useIdx]);
+					//System.out.println("COMPARE! - " + Integer.valueOf(t.toString()) + "v" + useArray[useIdx]);
 					mathHolder =  useIdx - 1 * 2;
-					System.out.println("Loop fields - " + sortedList + "-" + t + " = " + useIdx + "<" + mathHolder);
+					//System.out.println("Loop fields - " + sortedList + "-" + t + " = " + useIdx + "<" + mathHolder);
 					for (int i = useIdx; i < useIdx - 1 * 2; i++) {
-						System.out.println("Entered Loop - " + sortedList + "-" + t);
+						//System.out.println("Entered Loop - " + sortedList + "-" + t);
 						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
 							System.out.println("SUCCESS upper left! " +  sortedList + "-" + t + " = " + useIdx);
 							return useIdx;
@@ -392,17 +384,17 @@ public class EvaluationService {
 				if ((useArray.length & 1) == 0) {
 				useIdx = useIdx / 2 + useIdx;
 				mathHolder = useIdx;
-				System.out.println("Even check - " + sortedList + "-" + t);
+				//System.out.println("Even check - " + sortedList + "-" + t);
 				}
 				
 				else {
 				useIdx = useIdx / 2 + useIdx + 1;
 				mathHolder = useIdx;
-				System.out.println("Odd check - " + sortedList + "-" + t);
+				//System.out.println("Odd check - " + sortedList + "-" + t);
 				}
 				
 				//System.out.println("OOBEX - " + sortedList + "-" + t + " Array Length v Idx: " + useArray.length + "v" + useIdx);
-				System.out.println("COMPARE! - " + Integer.valueOf(t.toString()) + "v" + useArray[useIdx]);
+				//System.out.println("COMPARE! - " + Integer.valueOf(t.toString()) + "v" + useArray[useIdx]);
 				
 				if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
 					System.out.println("Quick Right! - " + sortedList + "-" + t + " = " + useIdx);
@@ -432,7 +424,8 @@ public class EvaluationService {
 				else if (Integer.valueOf(t.toString()) > useArray[useIdx]) {
 					// upper right half
 					System.out.println("Entered - Right,Upper " + sortedList + "-" + t);
-					for (int i = useIdx; i < useIdx - 1 * 2; i++) {
+					System.out.println("NEW - " + "v" +  useIdx + " " + sortedList + "-" + t);
+					for (int i = useIdx; i < useIdx * 2 - 1; i++) {
 						
 						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
 							System.out.println("SUCCESS in upper right! " +  sortedList + "-" + t + " = " + useIdx);
