@@ -287,12 +287,11 @@ public class EvaluationService {
 
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
-			
-			Object [] rawArray = {1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377}; //sortedList.toArray();
+			//System.out.println("Start, " + sortedList + " is in");
+			Object [] rawArray = sortedList.toArray();
 			int [] useArray = new int [rawArray.length];
 			int useIdx = 0;
-			int mathNum;
-			int startNum;
+			int mathHolder;
 			boolean isEven = false;
 			
 			for (Object number : rawArray) {
@@ -303,19 +302,132 @@ public class EvaluationService {
 			}
 			
 			if ((useArray.length & 1) == 0) {
-				System.out.println(useArray.length + " is even!");
-				mathNum = useArray.length / 2;
-				System.out.println(mathNum);
+				//System.out.println(useArray.length + " is even!");
+				useIdx = useArray.length / 2;
+				System.out.println(useIdx);
 				isEven = true;
+				
 				
 			}
 			
 			else {
-				System.out.println(useArray.length + " is odd!");
+				//System.out.println(useArray.length + " is odd!");
+				useIdx = useArray.length / 2 + 1;
+				//System.out.println(useIdx + " odd");
 			}
 			
+			if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
+				System.out.println("Quick Catch! - " + sortedList + "-" + t);
+				return useIdx;
+			}
 			
+			else if (Integer.valueOf(t.toString()) < useArray[useIdx]) {
+				// First half split
+				System.out.println("Entered - " + sortedList + "-" + t);
+				if (isEven) {
+				useIdx = useIdx / 2;
+				mathHolder = useIdx;
+				}
+				
+				else {
+				useIdx = useIdx / 2 + 1;
+				mathHolder = useIdx;
+				}
+				
+				if (Integer.valueOf(t.toString()) < useArray[useIdx]) {
+					// lower left half
+					for (int i = useIdx; i > -1; i--) {
+						
+						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
+							return useIdx;
+						}
+						
+						else {
+							useIdx--;
+						}
+						
+					}
+					
+					useIdx = mathHolder;
+					
+				}
+				
+				else if (Integer.valueOf(t.toString()) > useArray[useIdx]) {
+					// upper left half
+					for (int i = useIdx; i < useIdx - 1 * 2; i++) {
+						
+						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
+							return useIdx;
+						}
+						
+						else {
+							useIdx++;
+						}
+						
+					}
+					
+					useIdx = mathHolder;
+					
+				}
+				
+			}
 			
+			else if (Integer.valueOf(t.toString()) > useArray[useIdx]) {
+				// second half split
+				System.out.println("Entered - " + sortedList + "-" + t);
+				if (isEven) {
+				useIdx = useIdx / 2 + useIdx;
+				mathHolder = useIdx;
+				}
+				
+				else {
+				useIdx = useIdx / 2 + useIdx + 1;
+				mathHolder = useIdx;
+				}
+				
+				if (Integer.valueOf(t.toString()) < useArray[useIdx]) {
+					// lower right half
+					for (int i = useIdx; i > -1; i--) {
+						
+						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
+							return useIdx;
+						}
+						
+						else {
+							useIdx--;
+						}
+						
+					}
+					
+					useIdx = mathHolder;
+					
+				}
+				
+				else if (Integer.valueOf(t.toString()) > useArray[useIdx]) {
+					// upper left half
+					for (int i = useIdx; i < useIdx - 1 * 2; i++) {
+						
+						if (Integer.valueOf(t.toString()) == useArray[useIdx]) {
+							return useIdx;
+						}
+						
+						else {
+							useIdx++;
+						}
+						
+					}
+					
+					useIdx = mathHolder;
+					
+				}
+				
+				else {
+					System.out.println("SearchSlip - " + sortedList + "-" + t);
+					return 0;
+				}
+				
+			}
+			System.out.println("Fallthrough - " + sortedList + "-" + t);
 			return 0;
 		}
 
