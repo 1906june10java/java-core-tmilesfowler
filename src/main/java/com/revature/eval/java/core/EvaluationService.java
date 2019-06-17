@@ -524,36 +524,60 @@ public class EvaluationService {
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
 		long divTest = l;
-		System.out.println("BEGIN! " + l);
+		//System.out.println("BEGIN! " + l);
 		divTest = divTest % 2;
-		System.out.println("Clean cut? " + l + "-" + divTest);
+		//System.out.println("Clean cut? " + l + "-" + divTest);
 		long firstDiv;
-		long checkDiv = 3;
+		long checksDiv = 3;
+		long lastDiv;
 		
 		if(divTest != 0) {
-			System.out.println("ENTER - " + l);
+			//System.out.println("ENTER - " + l);
 			divTest = l;
 			
 			for (int i = 0; i < 2; i++) {
-				divTest = l % checkDiv;
-				System.out.println("Loop! - " + divTest + "v" + checkDiv + "->" + i);
+				divTest = l % checksDiv;
+				//System.out.println("Loop! - " + divTest + "v" + checkDiv + "->" + i);
 				if(divTest != 0) {
-					checkDiv++;
+					checksDiv++;
 					divTest = l;
 					i = 0;
 				}
 				else {
-					System.out.println("Exit! - " + divTest + "v" + checkDiv + "->" + i);
-					firstDiv = divTest;
+					//System.out.println("Exit! - " + divTest + "v" + checkDiv + "->" + i);
 					i = 2;
+				}	
+			}		
+			//System.out.println("Confirm Exit! - " + divTest + "v" + checkDiv);
+		}
+		
+		firstDiv = divTest;
+		lastDiv = l / firstDiv;
+		
+			for (long i = lastDiv - 1; i > firstDiv; i--) {
+				//Check EVERY number to see if it's divisible by this number, then if it's prime
+				//if (l is divisible by lastDiv (percent thing){
+				 if (l % lastDiv == 0) {
+				// * check every other number to see if it's prime
+					 for(long j = lastDiv - 1; j > firstDiv; j--) {
+					//see if it's prime	 
+					 if(lastDiv % 33 == 0) {
+						 
+					 }
+					 
+					 }
+				// * if it's prime, add it to the list
+				// * Loop again by bringing down lastDiv unless we've hit firstDiv
 				}
-				
+				// * 
+				//* else {
+				// * loop it again, bring down lastDiv
+				//* }
+				//**/
 				
 			}
 			
-			System.out.println("Confirm Exit! - " + divTest + "v" + checkDiv);
-			
-		}
+		
 	
 		//System.out.println(divTest);
 		/**for (Long i = 901255L / 2; i > 0L; i--) {
