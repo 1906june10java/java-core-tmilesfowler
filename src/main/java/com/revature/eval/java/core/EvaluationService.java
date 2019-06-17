@@ -525,24 +525,24 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
+		//l = 12;
 		long divTest = l;
 		System.out.println("BEGIN! " + l);
 		divTest = divTest % 2;
-		//System.out.println("Clean cut? " + l + "-" + divTest);
 		long firstDiv;
 		long checksDiv = 3;
 		long lastDiv;
-		long subDiv;
+		long subDiv = 0;
 		int prmTick = 0;
 		List<Long> finalList = new ArrayList<>();
-		System.out.println("ALPHA! - " + l);
+		
 		if(divTest != 0) {
-			//System.out.println("ENTER - " + l);
+			
 			divTest = l;
 			
 			for (int i = 0; i < 2; i++) {
 				divTest = l % checksDiv;
-				//System.out.println("Loop! - " + divTest + "v" + checkDiv + "->" + i);
+				
 				if(divTest != 0) {
 					checksDiv++;
 					divTest = l;
@@ -550,64 +550,55 @@ public class EvaluationService {
 				}
 				
 				else {
-					//System.out.println("Exit! - " + divTest + "v" + checkDiv + "->" + i);
+					
 					divTest = checksDiv;
 					i = 2;
 				}	
 			}		
-			//System.out.println("Confirm Exit! - " + divTest + "v" + checkDiv);
+			
 		}
 		
 		else {
-			divTest = 2L;
+			divTest = 2;
 		}
 		
 		firstDiv = divTest;
-		System.out.println("Math Saftety - " + l + " div by " + firstDiv);
+		System.out.println("Math Safety - " + l + " div by " + firstDiv);
 		lastDiv = l / firstDiv;
 		System.out.println("To Loop - " + l);
 		
-			for (long i = lastDiv - 1L; i > firstDiv; i--) {
-				//Check EVERY number to see if it's divisible by this number, then if it's prime
-				//if (l is divisible by lastDiv (percent thing){
+			for (long i = lastDiv - 1; i > firstDiv; i--) {
+				
 				 if (l % lastDiv == 0) {
-				// * check every other number to see if it's prime
 					 prmTick = 0;
-					 for(long j = lastDiv - 1L; j > 1; j--) {
-					//see if it's prime
+					 for(long j = lastDiv - 1; j > 1; j--) {
+						 
 						 subDiv = j;
+						 //System.out.println("Catch " + subDiv);
+						 
 					 if(lastDiv % subDiv == 0) {
 						 j = firstDiv;
 						 prmTick++;
 					 }
-					 //else {}
-					 }
+					 
+					 
+						 
+					 } 
+						
+					// if (subDiv == 2) {
+					//	 finalList.add(2L);
+					// }
+					 
 					 if(prmTick == 0) {
-				// * if it's prime, add it to the list
 					 finalList.add(lastDiv);
 					 }
 					 
 				}
 				 
-				 lastDiv--;
-				// * 
-				//* else {
-				// * loop it again, bring down lastDiv
-				//* }
-				//**/	
+				 lastDiv--;	
 			}
 			
-			System.out.println("End? " + finalList);
-		System.out.println(finalList);
-	
-		//System.out.println(divTest);
-		/**for (Long i = 901255L / 2; i > 0L; i--) {
-			
-			System.out.println("SpeedTest " + i);
-			
-		}
-		**/
-		//System.out.println("DONE");
+			System.out.println("End Loop - " + finalList);
 		finalList.add(divTest);
 		Collections.reverse(finalList);
 		System.out.println(finalList + " flipped ");
