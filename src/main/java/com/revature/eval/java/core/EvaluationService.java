@@ -530,6 +530,9 @@ public class EvaluationService {
 		long firstDiv;
 		long checksDiv = 3;
 		long lastDiv;
+		long subDiv;
+		int prmTick = 0;
+		//List finalList = new List();
 		
 		if(divTest != 0) {
 			//System.out.println("ENTER - " + l);
@@ -559,14 +562,24 @@ public class EvaluationService {
 				//if (l is divisible by lastDiv (percent thing){
 				 if (l % lastDiv == 0) {
 				// * check every other number to see if it's prime
+					 prmTick = 0;
 					 for(long j = lastDiv - 1; j > firstDiv; j--) {
-					//see if it's prime	 
-					 if(lastDiv % 33 == 0) {
-						 
+					//see if it's prime
+						 subDiv = j;
+					 if(lastDiv % subDiv == 0) {
+						 j = firstDiv;
+						 prmTick++;
 					 }
 					 
+					 //else {
+					 	 
+					 //}
+					 
 					 }
+					 
+					 
 				// * if it's prime, add it to the list
+					 finalList.add(lastDiv);
 				// * Loop again by bringing down lastDiv unless we've hit firstDiv
 				}
 				// * 
