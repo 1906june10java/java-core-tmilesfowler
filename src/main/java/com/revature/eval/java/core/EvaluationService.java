@@ -2,7 +2,9 @@ package com.revature.eval.java.core;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.math.*;
 
@@ -524,7 +526,7 @@ public class EvaluationService {
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		// TODO Write an implementation for this method declaration
 		long divTest = l;
-		//System.out.println("BEGIN! " + l);
+		System.out.println("BEGIN! " + l);
 		divTest = divTest % 2;
 		//System.out.println("Clean cut? " + l + "-" + divTest);
 		long firstDiv;
@@ -532,8 +534,8 @@ public class EvaluationService {
 		long lastDiv;
 		long subDiv;
 		int prmTick = 0;
-		//List finalList = new List();
-		
+		List<Long> finalList = new ArrayList<>();
+		System.out.println("ALPHA! - " + l);
 		if(divTest != 0) {
 			//System.out.println("ENTER - " + l);
 			divTest = l;
@@ -546,51 +548,57 @@ public class EvaluationService {
 					divTest = l;
 					i = 0;
 				}
+				
 				else {
 					//System.out.println("Exit! - " + divTest + "v" + checkDiv + "->" + i);
+					divTest = checksDiv;
 					i = 2;
 				}	
 			}		
 			//System.out.println("Confirm Exit! - " + divTest + "v" + checkDiv);
 		}
 		
-		firstDiv = divTest;
-		lastDiv = l / firstDiv;
+		else {
+			divTest = 2L;
+		}
 		
-			for (long i = lastDiv - 1; i > firstDiv; i--) {
+		firstDiv = divTest;
+		System.out.println("Math Saftety - " + l + " div by " + firstDiv);
+		lastDiv = l / firstDiv;
+		System.out.println("To Loop - " + l);
+		
+			for (long i = lastDiv - 1L; i > firstDiv; i--) {
 				//Check EVERY number to see if it's divisible by this number, then if it's prime
 				//if (l is divisible by lastDiv (percent thing){
 				 if (l % lastDiv == 0) {
 				// * check every other number to see if it's prime
 					 prmTick = 0;
-					 for(long j = lastDiv - 1; j > firstDiv; j--) {
+					 for(long j = lastDiv - 1L; j > 1; j--) {
 					//see if it's prime
 						 subDiv = j;
 					 if(lastDiv % subDiv == 0) {
 						 j = firstDiv;
 						 prmTick++;
 					 }
-					 
-					 //else {
-					 	 
-					 //}
-					 
+					 //else {}
 					 }
-					 
-					 
+					 if(prmTick == 0) {
 				// * if it's prime, add it to the list
 					 finalList.add(lastDiv);
-				// * Loop again by bringing down lastDiv unless we've hit firstDiv
+					 }
+					 
 				}
+				 
+				 lastDiv--;
 				// * 
 				//* else {
 				// * loop it again, bring down lastDiv
 				//* }
-				//**/
-				
+				//**/	
 			}
 			
-		
+			System.out.println("End? " + finalList);
+		System.out.println(finalList);
 	
 		//System.out.println(divTest);
 		/**for (Long i = 901255L / 2; i > 0L; i--) {
@@ -600,8 +608,10 @@ public class EvaluationService {
 		}
 		**/
 		//System.out.println("DONE");
-		
-		return null;
+		finalList.add(divTest);
+		Collections.reverse(finalList);
+		System.out.println(finalList + " flipped ");
+		return finalList;
 	}
 
 
